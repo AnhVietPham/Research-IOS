@@ -7,9 +7,10 @@
 //
 
 import Foundation
+
 struct Task : Identifiable {
-     let id = UUID()
+    let id = UUID()
     var nameTask : String
-    var completely: Bool = false
+    var completed: Bool = false
     
 }
