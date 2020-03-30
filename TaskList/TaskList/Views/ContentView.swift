@@ -9,31 +9,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    var taskStore : TaskStore
-    //    @ObservedObject var taskStore : TaskStore
+    
+    @ObservedObject var taskStore : TaskStore
     @State var modelIsPresented = false
     
     var body: some View {
         NavigationView{
             List{
-                //                ForEach(taskStore.tasks.indices){ index in
-                //                    RowView(task: taskStore.tasks[index].nameTask)
-                ////                    RowView(task: self.$taskStore.tasks[index])
-                //                }
-                ForEach(taskStore.tasks, id: \.id){ task in
-//                    RowView(task: task.nameTask)
-                    Text("Task: \(task.nameTask)")
+                ForEach(taskStore.prioritizedTasks){ index in
+                    SectionView(prioritizedTasks: self.$taskStore.prioritizedTasks[index])
                 }
-                .onMove{ sourceIndices, destinationIndex in
-                    self.taskStore.tasks.move(
-                        fromOffsets: sourceIndices,
-                        toOffset: destinationIndex)
-                    
-                    }
-                .onDelete{ indexSet in
-                    self.taskStore.tasks.remove(atOffsets: indexSet)
-                }
+                
             }
+            .listStyle(GroupedListStyle())
             .navigationBarTitle("Tasks")
             .navigationBarItems(
                 leading: EditButton(),

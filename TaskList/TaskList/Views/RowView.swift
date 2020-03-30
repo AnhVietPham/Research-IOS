@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct RowView: View {
-//    var task: Task
     @Binding var task: Task
     
     let checkMark = Image(systemName: "checkmark")
@@ -17,7 +16,6 @@ struct RowView: View {
     var body: some View{
         NavigationLink(
             destination : TaskEditingView(task: $task)
-//            destination : TaskEditingView(task: $task)
         ){
             if task.completed{
                 checkMark
@@ -33,7 +31,6 @@ struct RowView: View {
 
 struct RowView_Previews: PreviewProvider {
     static var previews: some View {
-//        RowView(task: Task(nameTask: "To Do"))
         RowView(task: .constant(Task(nameTask: "To Do")))
     }
 }
