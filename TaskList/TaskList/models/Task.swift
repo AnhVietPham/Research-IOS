@@ -14,3 +14,4 @@ struct Task : Identifiable {
     var completed: Bool = false
     
 }
+	
